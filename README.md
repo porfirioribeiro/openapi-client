@@ -1,5 +1,7 @@
 # OpenAPI Client
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mikestead/openapi-client.svg)](https://greenkeeper.io/)
+
 Generate ES6 or Typescript service integration code from an OpenAPI spec.
 
 Also supports optional Redux action creator generation.
