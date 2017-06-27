@@ -49,6 +49,7 @@ function renderReduxActionBlock(spec, op, options) {
         else
             params = 'options';
     }
+    const docs = genOperations_1.renderOperationDocs(op).join('\n');
     const response = util_1.getBestResponse(op);
     const returnType = response ? support_1.getTSParamType(response) : 'any';
     return `
@@ -56,6 +57,7 @@ export const ${actionStart} = 's/${op.group}/${actionStart}'${support_1.ST}
 export const ${actionComplete} = 's/${op.group}/${actionComplete}'${support_1.ST}
 ${isTs ? `export type ${actionComplete} = ${returnType}${support_1.ST}` : ''}
 
+${docs}
 export function ${op.id}(${paramSignature})${isTs ? ': any' : ''} {
   return dispatch => {
     dispatch({ type: ${actionStart}, meta: { info, options } })${support_1.ST}

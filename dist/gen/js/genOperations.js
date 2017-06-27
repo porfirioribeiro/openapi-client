@@ -58,6 +58,7 @@ function renderOperationDocs(op) {
     lines.push(` */`);
     return lines;
 }
+exports.renderOperationDocs = renderOperationDocs;
 function renderDocDescription(op) {
     const desc = op.description || op.summary;
     return desc ? `${support_1.DOC}${desc.trim()}`.replace(/\n/g, `\n${support_1.DOC}`).split('\n') : [];

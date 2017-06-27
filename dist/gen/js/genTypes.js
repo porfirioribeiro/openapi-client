@@ -260,6 +260,7 @@ function renderTypeDoc(name, def) {
         lines.push(`${support_1.DOC}`);
     util_1.join(lines, propLines);
     lines.push(' */');
+    lines.push(`const ${name}=null`);
     lines.push('');
     return lines;
 }
