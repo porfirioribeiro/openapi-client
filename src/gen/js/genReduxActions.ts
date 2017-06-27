@@ -1,6 +1,6 @@
 import { writeFileSync, join, groupOperationsByGroupName, camelToUppercase, getBestResponse } from '../util'
 import { DOC, SP, ST, getDocType, getTSParamType } from './support'
-import { renderParamSignature, renderOperationGroup } from './genOperations'
+import {renderParamSignature, renderOperationGroup, renderOperationDocs} from './genOperations'
 
 export default function genReduxActions(spec: ApiSpec, operations: ApiOperation[], options: ClientOptions) {
   const files = genReduxActionGroupFiles(spec, operations, options)
@@ -48,7 +48,7 @@ function renderReduxActionBlock(spec: ApiSpec, op: ApiOperation, options: Client
     if (required.length) params += ', options'
     else params = 'options'
   }
-
+  const docs=renderOperationDocs(op).join('\n')
   const response = getBestResponse(op)
   const returnType = response ? getTSParamType(response) : 'any'
   return `
@@ -56,6 +56,7 @@ export const ${actionStart} = 's/${op.group}/${actionStart}'${ST}
 export const ${actionComplete} = 's/${op.group}/${actionComplete}'${ST}
 ${isTs ? `export type ${actionComplete} = ${returnType}${ST}`: ''}
 
+${docs}
 export function ${op.id}(${paramSignature})${isTs? ': any' : ''} {
   return dispatch => {
     dispatch({ type: ${actionStart}, meta: { info, options } })${ST}
