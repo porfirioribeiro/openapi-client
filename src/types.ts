@@ -5,6 +5,8 @@ interface ClientOptions {
   redux?: boolean
   indent?: '2'|'4'|'tab'
   semicolon?: boolean
+  transformSpec?: (spec: ApiSpec) => void
+  transformOperations?: (operations: ApiOperation[]) => void
 }
 
 interface ApiRequestData {
