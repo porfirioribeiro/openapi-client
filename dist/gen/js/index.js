@@ -7,6 +7,10 @@ const genSpec_1 = require('./genSpec');
 const support_1 = require('./support');
 function genCode(spec, operations, options) {
     support_1.applyFormatOptions(options);
+    if (options.transformSpec)
+        options.transformSpec(spec);
+    if (options.transformOperations)
+        options.transformOperations(operations);
     genService_1.default(options);
     genSpec_1.default(spec, options);
     genOperations_1.default(spec, operations, options);
