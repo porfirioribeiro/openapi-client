@@ -7,6 +7,8 @@ import { applyFormatOptions } from './support'
 
 export default function genCode(spec: ApiSpec, operations: ApiOperation[], options: ClientOptions): ApiSpec {
   applyFormatOptions(options)
+  if (options.transformSpec) options.transformSpec(spec)
+  if (options.transformOperations) options.transformOperations(operations)
   genService(options)
   genSpec(spec, options)
   genOperations(spec, operations, options)
