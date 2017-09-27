@@ -52,7 +52,7 @@ function renderReduxActionBlock(spec, op, options) {
             params = 'options';
     }
     const docsArray = genOperations_1.renderOperationDocs(op);
-    docsArray.splice(docsArray.length - 2, 0, `${support_1.DOC}@param {object} [info]`);
+    docsArray.splice(docsArray.length - 1, 0, `${support_1.DOC}@param {object} [info]`);
     const docs = docsArray.join('\n');
     const response = util_1.getBestResponse(op);
     const returnType = response ? support_1.getTSParamType(response) : 'any';

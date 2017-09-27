@@ -51,7 +51,7 @@ function renderReduxActionBlock(spec: ApiSpec, op: ApiOperation, options: Client
     else params = 'options'
   }
   const docsArray=renderOperationDocs(op)
-  docsArray.splice(docsArray.length-2, 0, `${DOC}@param {object} [info]`)
+  docsArray.splice(docsArray.length-1, 0, `${DOC}@param {object} [info]`)
   const docs=docsArray.join('\n')
   const response = getBestResponse(op)
   const returnType = response ? getTSParamType(response) : 'any'
